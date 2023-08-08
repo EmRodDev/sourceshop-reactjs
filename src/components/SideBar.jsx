@@ -1,9 +1,20 @@
 import { Stack, Text, AccordionButton, AccordionItem, Avatar, Button, Drawer, DrawerContent, DrawerHeader, DrawerOverlay, Spacer, VStack, Box, AccordionIcon, AccordionPanel, Divider, DrawerFooter, DrawerBody, Center, extendTheme, Portal, AbsoluteCenter, Icon, HStack, SimpleGrid, Square, Badge } from "@chakra-ui/react";
-import { BiCart } from "react-icons/bi";
-import CartWidget from "./NavBar_components/CartWidget";
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
 
 
 export default function SideBar({ isOpen, onClose }) {
+    const {cartItems} = useContext(CartContext);
+    const navigate = useNavigate();
+    const goToProductsPage_cellphones = () => navigate('/category/cellphones');
+    const goToProductsPage_laptops = () => navigate('/category/laptops');
+    const goToProductsPage_peripherals = () => navigate('/category/peripherals');
+    const goToProductsPage = () => navigate('/category/');
+
+    const goToLoginPage = () => navigate('/login');
+    const goToCartPage = () => navigate('/cart');
+
     return (
         <>
             <Drawer isOpen={isOpen} onClose={onClose} placement='right'>
@@ -17,17 +28,17 @@ export default function SideBar({ isOpen, onClose }) {
                                 </Box>
                             </Box>
                             <Box h='60px' w='70%' as={Square}>
-                                <Button w='150px' h='40px'>Iniciar sesión</Button>
+                                <Button w='150px' h='40px' onClick={goToLoginPage}>Sign in</Button>
                             </Box>
                         </VStack>
                     </DrawerHeader>
                     <DrawerBody>
-                        <Text fontSize='3xl' textAlign='right'>Carrito (0)</Text>
+                        <Text cursor='pointer' fontSize='3xl' textAlign='right' onClick={goToCartPage}>Shopping cart ({cartItems.length})</Text>
                         <Divider h='2px' bg='lightgrey' />
-                        <Box w='100%' h='35px'> <Text fontSize='xl' textAlign='right' textStyle=''><b>Catálogo</b></Text></Box>
-                        <Box w='100%' h='30px' as='button'> <Text fontSize='xlg' textAlign='right' textStyle=''>Celulares</Text></Box>
-                        <Box w='100%' h='30px' as='button'> <Text fontSize='xlg' textAlign='right' textStyle=''>Laptops</Text></Box>
-                        <Box w='100%' h='30px' as='button'> <Text fontSize='xlg' textAlign='right' textStyle=''>Periféricos</Text></Box>
+                        <Box w='100%' h='35px' as='button' onClick={goToProductsPage}> <Text fontSize='xl' textAlign='right' textStyle=''><b>Catalogue</b></Text></Box>
+                        <Box w='100%' h='30px' as='button' onClick={goToProductsPage_cellphones}> <Text fontSize='xlg' textAlign='right' textStyle=''>Cellphones</Text></Box>
+                        <Box w='100%' h='30px' as='button' onClick={goToProductsPage_laptops}> <Text fontSize='xlg' textAlign='right' textStyle=''>Laptops</Text></Box>
+                        <Box w='100%' h='30px' as='button' onClick={goToProductsPage_peripherals}> <Text fontSize='xlg' textAlign='right' textStyle=''>Peripherals</Text></Box>
 
                     </DrawerBody>
                     <DrawerFooter bg='lightgrey' justifyContent={'center'}>

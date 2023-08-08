@@ -10,9 +10,9 @@ export default function FooterPage (){
             </Center>
                 <Box as={Container} w='100px' h='50px' alignContent={'center'}>
                     <Center paddingTop='10px'>
-                    <Image alt="Vite.js" src='./vite.svg' w='50%' h='50%'/>
+                    <Image alt="Vite.js" src='/vite.svg' w='50%' h='50%'/>
                     <Text textColor='white'><b>+</b></Text>
-                    <Image alt="React" src='./react.svg' w='50%' h='50%'/>
+                    <Image alt="React" src='/react.svg' w='50%' h='50%'/>
                     </Center>
                 </Box>
             </Container>

@@ -1,0 +1,14 @@
+[
+{
+    "id":1,
+    "category":"cellphones"
+},
+{
+    "id":2,
+    "category":"laptops"
+},
+{
+    "id":3,
+    "category":"peripherals"
+}
+]

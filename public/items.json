@@ -1,0 +1,62 @@
+[{
+    "id":1,
+    "category":1,
+    "img":"https://tienda.antel.com.uy/razuna/assets/1/C44AEF4C4E1A4F27ABADEBA2597417FE/img/12B281C1A91842D89B1C6CEEBBC782BF/xiaomi-redmi-note10-5g-1_12B281C1A91842D89B1C6CEEBBC782BF.jpg",
+    "name":"Xiaomi Redmi Note 10",
+    "stock":99,
+    "sold":400,
+    "desc":"The Redmi Note 10 boasted a large and vibrant display, typically around 6.43 inches, with Full HD+ resolution, delivering sharp visuals and excellent color reproduction. It utilized an AMOLED panel, offering deeper blacks and more energy-efficient performance compared to traditional LCD displays.",
+    "price":100
+},
+{
+    "id":2,
+    "category":1,
+    "img":"https://www.celularesalcosto.com.uy/wp-content/uploads/2023/04/Apple-Iphone-11-Pro-Max-colores.jpg",
+    "name":"Iphone 11",
+    "stock":3,
+    "sold":5,
+    "desc":"As of my last update in September 2021, the iPhone 11 was a popular smartphone released by Apple in September 2019. It was part of the 11th generation of iPhones and served as a successor to the iPhone XR. The iPhone 11 was well-received for its powerful performance, impressive camera capabilities, and more affordable pricing compared to other models in the 11th generation lineup.",
+    "price":1000
+},
+{
+    "id":3,
+    "category":2,
+    "img":"https://netpc.uy/wp-content/uploads/2020/11/5-36.jpg",
+    "name":"MSI GF65 Thin",
+    "stock":40,
+    "sold":1,
+    "desc":"The MSI GF65 Thin featured a sleek and relatively slim design, making it more travel-friendly than some bulkier gaming laptops. It typically came with a 15.6-inch Full HD (1920x1080) display, which provided sharp visuals and a smooth gaming experience. The screen often featured a fast refresh rate of 120Hz or 144Hz, enhancing the fluidity of gameplay and reducing motion blur.",
+    "price":2000
+},
+{
+    "id":4,
+    "category":1,
+    "img":"https://chequealo.uy/cpanelBW/imagesBW/808492.jpg",
+    "name":"Google Pixel 7",
+    "stock":0,
+    "sold":1,
+    "desc":"The Pixel 7 and Pixel 7 Pro are a pair of Android smartphones designed, developed, and marketed by Google as part of the Google Pixel product line. They serve as the successor to the Pixel 6 and Pixel 6 Pro, respectively. The phones were first previewed in May 2022, during the Google I/O keynote. They are powered by the second-generation Google Tensor chip, and feature a design similar to that of the Pixel 6 series. They shipped with Android 13.",
+    "price":1300
+},
+{
+    "id":5,
+    "category":2,
+    "img":"https://s3-sa-east-1.amazonaws.com/imagenes-loiuruguay/_img_productos/apple-macbook-air-m2-256gb-gris-espacial-foto1.jpg",
+    "name":"Apple MacBook Air M2",
+    "stock":99,
+    "sold":1,
+    "desc":"The redesigned MacBook Air is a thin, lightweight device powered by Apple's latest chip. The M2 model also touts a 1080p webcam and a better display than its predecessor, while retaining features like long battery life and MagSafe charging.",
+    "price":9999999
+},
+{
+    "id":6,
+    "category":2,
+    "img":"https://f.fcdn.app/imgs/17ed4d/www.zonatecno.com.uy/zoteuy/e8b2/original/catalogo/102662_102662_1/2000-2000/notebook-asus-zenbook-duo-14-ux482egr-hy335w-i7-1195g7-1tb-notebook-asus-zenbook-duo-14-ux482egr-hy335w-i7-1195g7-1tb.jpg",
+    "name":"Asus Zenbook Pro Duo 14",
+    "stock":12,
+    "sold":1,
+    "desc":"Using Asus’s ScreenXpert software, Zenbook Pro Duo users essentially have a small, crisp secondary OLED monitor on their keyboard deck. This second screen can also be turned into a giant touchpad (which is helpful since the actual touchpad the device comes with is pretty tiny. The device also comes with high-performance chips from Intel and Nvidia, and a roomy 16:10 primary screen. While the keyboard-in-the-front layout won’t be for everyone, this innovative device is the best choice for shoppers who want multiple screens in one.",
+    "price":390
+}
+
+]
