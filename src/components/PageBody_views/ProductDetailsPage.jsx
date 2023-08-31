@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState, ChangeEvent } from 'react'
 import useQuery from '../../utils/UrlQueryHandler';
-import { Box, Card, Center, SimpleGrid, Flex, Text,Image, Button, HStack,Select} from '@chakra-ui/react';
+import { Box, Card, Center, SimpleGrid, Flex, Text, Image, Button, HStack, Select } from '@chakra-ui/react';
 import { GetItemInfoByID } from '../../utils/GetItemInfo';
 import { CartContext } from '../../context/CartContext';
 import { GetCategoryById } from "../../utils/GetCategoryInfo";
 import { useLocation } from 'react-router-dom';
+import { LoadingContext } from '../../context/LoadingContext';
 
 export default function ProductDetailsPage() {
 
@@ -15,7 +16,8 @@ export default function ProductDetailsPage() {
   const location = useLocation();
 
 
-  const {addItem} = useContext(CartContext);
+  const { addItem } = useContext(CartContext);
+  const { isLoading } = useContext(LoadingContext);
 
   const getItemId = useQuery("id");
 
@@ -34,24 +36,25 @@ export default function ProductDetailsPage() {
     return items;
   }
   const pushProducts = (() => {
-    addItem(product,selectedStock);
+    addItem(product, selectedStock);
   });
 
-  const getCategoryName = async(id) => {
-
-        const category = await GetCategoryById(parseInt(id));
-        return category[0].category
-}
+  const getCategoryName = async (id) => {
+    const category = await GetCategoryById(parseInt(id));
+    return category[0].Name
+  }
 
   const invokeFunctions = async () => {
+    await isLoading(true);
     const productInfo = await GetItemInfoByID(getItemId);
-    await setProductInfo(productInfo);
-    await setCategory(await getCategoryName(productInfo.category));
-    await setStock(productInfo.stock);
+    setProductInfo(productInfo);
+    setCategory(await getCategoryName(productInfo.Category_ID));
+    setStock(productInfo.Stock);
+    await isLoading(false);
   }
 
 
-  
+
   useEffect(() => {
     invokeFunctions();
   }, []);
@@ -67,19 +70,19 @@ export default function ProductDetailsPage() {
           <Card h='90%' w='95%' bg='lightgrey' p={4}>
             <Box>
               <SimpleGrid columns={{ lg: 2, md: 1, sm: 1 }} paddingTop={10} paddingLeft={10} paddingRight={10} spacing={5} paddingBottom={{ lg: 4, md: 5, sm: 5 }}>
-                <Image src={product.img} w={{ lg: '500px', md: '100%', sm: '100%' }} borderRadius={20} paddingBottom={{ lg: 0, md: 5, sm: 5 }}></Image>
+                <Image src={product.ImgURL} w={{ lg: '500px', md: '100%', sm: '100%' }} borderRadius={20} paddingBottom={{ lg: 0, md: 5, sm: 5 }}></Image>
                 <Box bg='grey' w='100%' borderRadius={20}>
                   <Box>
-                    <Text fontSize='3xl' align='center'><b>{product.name}</b></Text>
-                    <Text fontSize='xl' align='center'><b>US${product.price}</b></Text>
+                    <Text fontSize='3xl' align='center'><b>{product.Name}</b></Text>
+                    <Text fontSize='xl' align='center'><b>US${product.Price}</b></Text>
                   </Box>
                   <Box alignItems='start' justifyItems='start' h={{ xl: '160px', lg: '130px', md: '150px', sm: '130px' }} p={6}>
-                    <Text textAlign='left'><b>Stock: {product.stock}</b></Text>
-                    <Text textAlign='left'><b>Category: {category.charAt(0).toUpperCase()+category.slice(1)}</b></Text>
+                    <Text textAlign='left'><b>Stock: {product.Stock}</b></Text>
+                    <Text textAlign='left'><b>Category: {category.charAt(0).toUpperCase() + category.slice(1)}</b></Text>
                   </Box>
                   <Box paddingBottom={10}>
                     <Center>
-                        {product.stock > 0 ?
+                      {product.Stock > 0 ?
                         <HStack>
                           <Text textAlign='center'><b>Quantity:</b></Text>
                           <Select bg='white' placeholder='1' w='60px' onChange={(ev) => setSelectedStock(ev.target.value)}>
@@ -88,19 +91,19 @@ export default function ProductDetailsPage() {
                         </HStack>
                         :
                         null
-                        }
+                      }
                     </Center>
                   </Box>
                   <Flex justifyContent='center' justifyItems='center' align='center' paddingBottom={4}>
-                    {product.stock > 0 ?
-                    <HStack spacing={6}>
-                      <Button w='60%' onClick={pushProducts}>Add to cart</Button>
-                      <Button w='60%'>Buy Now</Button>
-                    </HStack>
-                    :
-                    <Text fontSize='4xl'><b>Product out of stock</b></Text>
-                  }
-                    
+                    {product.Stock > 0 ?
+                      <HStack spacing={6}>
+                        <Button w='60%' onClick={pushProducts}>Add to cart</Button>
+                        <Button w='60%'>Buy Now</Button>
+                      </HStack>
+                      :
+                      <Text fontSize='4xl'><b>Product out of stock</b></Text>
+                    }
+
 
                   </Flex>
                 </Box>
@@ -108,21 +111,21 @@ export default function ProductDetailsPage() {
             </Box>
             <Box bg='grey' borderRadius={20} h='400px' w='95%' alignSelf='center'>
               <Text textAlign='center' p={2}><b>Description:</b></Text>
-              <Text p={6}>{product.desc}</Text>
+              <Text p={6}>{product.Description}</Text>
             </Box>
           </Card>
         </Center>
       </>
     )
 
-  }else if ( product == undefined){
+  } else if (product == undefined) {
     return (
       <>
-      <Center as={Box} w='100%' minH='500px' p={2} paddingBottom={0}>
+        <Center as={Box} w='100%' minH='500px' p={2} paddingBottom={0}>
           <Card h='500px' w='95%' bg='lightgrey' p={4}>
             <Text textAlign='center'><b>This product doesn't exist</b></Text>
           </Card>
-      </Center>
+        </Center>
       </>
     )
   }

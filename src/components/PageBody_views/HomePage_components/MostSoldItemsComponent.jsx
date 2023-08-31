@@ -1,14 +1,18 @@
 import { Card, Center, Container, HStack,Text,Image } from "@chakra-ui/react";
-import { GetItemInfoBySold } from "../../../utils/GetItemInfo";
-import { useEffect, useState } from "react";
+import { GetItemInfoBySold} from "../../../utils/GetItemInfo";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoadingContext } from "../../../context/LoadingContext";
 
 export default function MostSoldItemsComponent({greeting}) {
+    const {isLoading} = useContext(LoadingContext);
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
     const fetchData = async() => {
+        await isLoading(true);
         const executeFetch = await GetItemInfoBySold();
-        await setItems(executeFetch);
+        setItems(executeFetch);
+        await isLoading(false);
     }
 
     const containerProps = {
@@ -24,8 +28,9 @@ export default function MostSoldItemsComponent({greeting}) {
     };
     useEffect(() => {
         fetchData();
-
       }, []);
+
+
 
     return (
     <>
@@ -35,8 +40,8 @@ export default function MostSoldItemsComponent({greeting}) {
         </Text>
     </Center>
     <HStack spacing={20}>
-    {items.map((value,index)=>(
-            <Image sx={containerProps} key={value.id} src={value.img} onClick={(()=>navigate('/item/'+value.id))}/>
+    {items.map((value)=>(
+            <Image sx={containerProps} key={value.ID} src={value.ImgURL} onClick={(()=>navigate('/item/'+value.ID))}/>
     ))}
     </HStack>
     

@@ -2,6 +2,7 @@ import { useDisclosure } from '@chakra-ui/react';
 
 //Contexts
 import { CartManagement } from './context/CartContext.jsx';
+import { LoadingManagement } from './context/LoadingContext.jsx';
 
 //Components
 import NavBar from './components/NavBar.jsx';
@@ -16,14 +17,16 @@ function App() {
 
   return (
     <>
-    <div className='App'>
-    <CartManagement>
-    <SideBar isOpen={isOpen} onClose={onClose} />
-    <NavBar onClick={onOpen}/>
-    <PageBody/>
-    <FooterPage/>
-    </CartManagement>
-    </div>
+      <div className='App'>
+        <LoadingManagement>
+          <CartManagement>
+            <SideBar isOpen={isOpen} onClose={onClose} />
+            <NavBar onClick={onOpen} />
+            <PageBody />
+            <FooterPage />
+          </CartManagement>
+        </LoadingManagement>
+      </div>
     </>
   )
 }

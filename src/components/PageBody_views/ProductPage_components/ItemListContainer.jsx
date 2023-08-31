@@ -3,7 +3,8 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useQuery from '../../../utils/UrlQueryHandler';
 import { GetItemInfoByCategory,GetAllItems } from '../../../utils/GetItemInfo';
-
+import { LoadingContext } from '../../../context/LoadingContext';
+import { useContext } from 'react';
 
 export default function ItemListContainer() {
     const [products, setProducts] = useState([]);
@@ -11,9 +12,10 @@ export default function ItemListContainer() {
     const location = useLocation();
     let stateText = "Loading...";
     const getItemType = useQuery("id");
+    const {isLoading} = useContext(LoadingContext);
 
     const fetchData = async () => {
-
+        isLoading(true);
         if(getItemType !== undefined){
             const executeFetch = await GetItemInfoByCategory(getItemType);
             setProducts(executeFetch);
@@ -21,7 +23,7 @@ export default function ItemListContainer() {
             const executeFetch = await GetAllItems();
             setProducts(executeFetch);
         }
-        
+        isLoading(false);
     };
 
     useEffect(() => {
@@ -33,17 +35,17 @@ export default function ItemListContainer() {
         return (
 
             products.map((product) => (
-                <Center key={"card"+product.id}>
+                <Center key={"card"+product.ID}>
                     <Card h='290px' w='200px' p={1}>
                         
                         <SimpleGrid columns={1} alignItems={'center'} justifyContent={'center'}>
-                            <Text p={2} align='center' fontSize={{lg:'sm',sm:'sm'}}>{product.name}</Text>
-                            <Center ><Image p={2} src={product.img} h='100px' w='120px'/></Center>
-                            <Text p={2} align='center'>US${product.price}</Text>
-                            <Text align='center' p={3}><b>Stock:</b> {product.stock}</Text>
+                            <Text p={2} align='center' fontSize={{lg:'sm',sm:'sm'}} noOfLines={[1]}  h='35px'>{product.Name}</Text>
+                            <Center ><Image p={2} src={product.ImgURL} h='100px' w='120px'/></Center>
+                            <Text p={2} align='center'>US${product.Price}</Text>
+                            <Text align='center' p={3}><b>Stock:</b> {product.Stock}</Text>
                             {
-                                product.stock > 0 ?
-                                <Center><Button bg='gray' w='50%' onClick={(()=>{navigate('/item/'+product.id)})}>Details</Button></Center>
+                                product.Stock > 0 ?
+                                <Center><Button bg='gray' w='50%' onClick={(()=>{navigate('/item/'+product.ID)})}>Details</Button></Center>
                                 :
                                 <Center><Button  bg='lightgray' w='50%' isDisabled textColor='red'>Out of stock</Button></Center>
                             }

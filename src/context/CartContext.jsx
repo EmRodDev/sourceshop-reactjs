@@ -10,11 +10,11 @@ export const CartManagement = ({children}) => {
     const {addToast} = CustomToast();
 
     const isInCart = (itemId) => {
-        return cartItems.some(product => product.id === itemId);
+        return cartItems.some(product => product.ID === itemId);
     }
     
     const addItem = (item, quantity) => {
-        if(!isInCart(item.id)){
+        if(!isInCart(item.ID)){
             updateCartItems(prevItems => [...prevItems, {...item, quantity}]);
         } else {
             addToast({message: 'This product was already added to the cart', type: 'error'})
@@ -24,7 +24,7 @@ export const CartManagement = ({children}) => {
     }
 
     const removeItem = (itemId) => {
-        const findItem = cartItems.filter(product => product.id !== itemId);
+        const findItem = cartItems.filter(product => product.ID !== itemId);
         updateCartItems(findItem);
     }
 

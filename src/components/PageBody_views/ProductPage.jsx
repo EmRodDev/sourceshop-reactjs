@@ -19,7 +19,7 @@ export default function ProductPage (){
         if(getProductType !== undefined)
         {
             const cat = await GetCategoryById(parseInt(getProductType));
-            await setCategory(cat[0].category);
+            await setCategory(cat[0].Name);
         }
     }
 

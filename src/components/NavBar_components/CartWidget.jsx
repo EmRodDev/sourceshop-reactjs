@@ -27,10 +27,10 @@ export function CartWidget() {
             <MenuItem key={index} w='full' h='70px'>
               <SimpleGrid columns={3} w='full' h='full'>
                 <Box  display='flex' alignItems='center' justifyContent='center'>
-                <Center><Image src={value.img} w='50px' h='50px'/></Center>
+                <Center><Image src={value.ImgURL} w='50px' h='50px'/></Center>
                 </Box>
                 <Box display='flex' alignItems='center' justifyContent='center'>
-                <Center><Text fontSize='15' textAlign='center'>{value.name}</Text></Center>
+                <Center><Text fontSize='15' textAlign='center'>{value.Name}</Text></Center>
                 </Box>
                 <Box  display='flex' alignItems='center' justifyContent='center'>
                 <Center><Text fontSize='15' textAlign='center'>x {value.quantity}</Text></Center>

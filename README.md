@@ -81,9 +81,9 @@ You can get Node.js <a href='https://nodejs.org/en'>here.</a>
         - [ ] Discord
             - [ ] Firebase DB integration
 
-- [ ] Show products from the shop
+- [X] Show products from the shop
     - [x] Filter by type
-    - [ ] Firebase DB integration
+    - [X] Firebase DB integration
 - [ ] Cart system
     - [x] Add item to cart
         - [x] Main function implementation
@@ -133,4 +133,4 @@ You can get Node.js <a href='https://nodejs.org/en'>here.</a>
 
 
 <!--Screenshot links-->
-[project-screenshot]:public/screenshot.png
+[project-screenshot]:public/screenshot.gif

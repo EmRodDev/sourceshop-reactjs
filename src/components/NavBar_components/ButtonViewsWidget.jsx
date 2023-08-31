@@ -1,10 +1,9 @@
 import { ButtonGroup, Spacer, Button, Menu, MenuButton, MenuList, useDisclosure, MenuItem } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { GetAllCategories } from "../../utils/GetCategoryInfo";
 
 export default function ButtonViewsWidget() {
-
   const timerRef = useRef();
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -17,15 +16,9 @@ export default function ButtonViewsWidget() {
   const goToHomePage = () => navigate('/');
   const goToAboutPage = () => navigate('/about');
 
-  const goToProductsPage_cellphones = () => navigate('/category/cellphones');
-  const goToProductsPage_laptops = () => navigate('/category/laptops');
-  const goToProductsPage_peripherals = () => navigate('/category/peripherals');
-
-
   const fetchData = async () => {
     const executeFetch = await GetAllCategories();
     setCategories(executeFetch);
-
   };
 
   const btnMouseEnterEvent = () => {
@@ -74,7 +67,7 @@ export default function ButtonViewsWidget() {
         <MenuList onMouseEnter={menuListMouseEnterEvent} onMouseLeave={menuListMouseLeaveEvent}>
           {
             categories.map((value,index) =>(
-              <MenuItem key={value.id} onClick={() => {navigate('/category/'+value.id);onClose();}}>{(value.category).charAt(0).toUpperCase()+(value.category).slice(1)}</MenuItem>
+              <MenuItem key={value.ID} onClick={() => {navigate('/category/'+value.ID);onClose();}}>{(value.Name).charAt(0).toUpperCase()+(value.Name).slice(1)}</MenuItem>
             ))
           }
         </MenuList>

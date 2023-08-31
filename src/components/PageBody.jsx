@@ -30,7 +30,7 @@ export default function PageBody (){
                 <Route exact path='/register' element={<RegisterPage/>}/>
                 <Route exact path='/item/:id' element={<ProductDetailsPage/>}/>
                 <Route exact path='/cart' element={<CartPage/>}/>
-                <Route exact path='/confirmation/:status' element={<ConfirmationPage/>}/>
+                <Route exact path='/confirmation/:status/:id' element={<ConfirmationPage/>}/>
                 <Route exact path='/404' element={<NotFoundPage/>}/>
                 <Route path="*" element={<Navigate to="/404" replace />}/>
         </Routes>
